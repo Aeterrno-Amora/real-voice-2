@@ -1,0 +1,35 @@
+# Naming and unit conventions
+
+attr
+	Short for noteAttributes. When read but not set note attributes, saving attr
+	objects is more efficient than saving note objects and querying each time.
+freq
+	Frequency, by default is a float measured in Hz. A4 = 440Hz.
+	Data read from Praat's .Pitch file are frequencies.
+pitch
+	By default is a float measured in semitones, as aligns with SV APIs, a MIDI
+	number where 60 = C4, 69 = A4 = 440Hz. Pitch in most of SV APIs are measured
+	in semitones, except that the pitchDelta automation is measured in cents.
+	Our process.py also saves pitch data as MIDI numbers.
+	In Praat, check "semitones re 440Hz", where -9 = C4, 0 = A4.
+time
+	Measured in seconds or blicks. My naming convention doesn't distinguish the
+	two; see codes and comments.
+	The general priciple is to convert seconds to blicks before they come into
+	contact with SV APIs, because all internal mechanism of SV operates in
+	blicks. For example, although note attributes like tF0Left and tF0Right are
+	stored in seconds, they get converted to blicks before they're used to
+	calculate the pitch transition, and they're converted with respect to the
+	BPM at the onset of the note, without considering if the BPM changes in the
+	middle of the note or the transition.
+	But for data not yet to interact with SV, e.g. pitch data from Praat, it's
+	better to do calculations in seconds, because it's more acoustically uniform
+	(you shouldn't use too few automation points just because the BPM is slow),
+	and also respects the fact that the conversion needs BPM information from
+	timeAxis. If you have to do a ton of calculations before interacting with SV
+	APIs, consider optimizing by transfering calculations to external scripts.
+Am
+	xxxAm means "xxx automation".
+lib
+	If an included module's name is prone to collide with casual local
+	variables, it's appended by suffix "lib".
