@@ -50,3 +50,7 @@ You will also need [Praat](https://www.fon.hum.uva.nl/praat/) and [Python](https
 3. Then it scans the `svp` file's directory for all possible tasks that preprocess exported raw data like `*.Pitch` into compact forms like `*_Pitch.txt` ready for use by internal scripts. You probably want to run the tasks marked with a star. If you don't like any of those, you can always input a path to a input file manually, and it guesses the task according to the extension name.
 4. Now you can run script `Load Pitch` in SynthV Studio, on arbitrary selection of notes. If your project is named `<name>.svp`, it reads data from `<name>_Pitch.txt`.
 5. If you have your `*.Pitch` file modified (e.g. you found a glitched pitch and went back to Praat to fix it), just hit `<Enter>` on the `process.py` that you have been running since step 2. It scans again and a star appears in front of your modified `*.Pitch`. Go through step 3 and 4 again and you pitch gets updated smoothly.
+
+## Find more scripts
+
+A list of scripts [here](https://synthv.info/resource-scripts).
